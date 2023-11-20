@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><b>Hospital Spatial Locator App</b></title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+		}
+    /* iPhone frame styles */
+    .phone-frame {
+      position: relative;
+      width: 360px;
+      height: 640px;
+      margin: 0 auto;
+      padding: 20px 0;
+      background-color: #f2f2f2;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .phone-screen {
+      position: relative;
+      width: 320px;
+      height: 620px;
+      margin: 0 auto;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.5); /* Adjust the last value (0.5) for the transparency */
+      overflow: hidden;
+      background-image: url('https://imgur.com/NQKCTDa.png'); 
+      background-repeat: repeat;
+      opacity: 2;
+    }
+    {
+		.background-image;
+		opacity: 2;
+	}
+    /* Style the dropdown button */
+		.dropbtn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			text-align: left;
+			border-radius: 10px;
+			margin-bottom: 10px;
+		}
+		/* Style the dropdown button */
+		.dropbtn {
+			background-color: #409bc9;
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+		}
+		
+		/* Style the dropdown button */
+		.searchme {
+			background-color: #409bc9;
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: 1px solid #ff0000;
+            border-radius: 5px;
+			cursor: pointer;
+			width: 90%;
+			border-radius: 10px;
+			margin-bottom: 10px;
+			height: 25px;
+		}
+		
+		/* Style the form */
+		.form {
+			background-color: #87CEEB;
+			color: white;
+			padding: 4px;
+			font-size: 10px;
+			border: none;
+			cursor: pointer;
+			width: 95%;
+			border-radius: 10px;
+			margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+            align-items: left;
+            height: 170px;
+		}
+		input[type="text"], input[type="tel"], textarea {
+  width: 70%;
+  max-width: 400px;
+  height: 10px;
+}
+
+		</body>
+		/* Dropdown button on hover & focus */
+		.dropbtn:hover, .dropbtn:focus {
+			background-color: #3e8e41;
+		}
+
+		/* The container <div> - needed to position the dropdown content */
+		.dropdown {
+			position: relative;
+			display: inline-block;
+			width: 100%;
+		}
+
+		/* Dropdown Content (Hidden by Default) */
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f1f1f1;
+			min-width: 160px;
+			z-index: 1;
+		}
+		/* Links inside the dropdown */
+		.dropdown-content a {
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			width: 100%;
+			text-align: left;
+		}
+
+		/* Change color of dropdown links on hover */
+		.dropdown-content a:hover {
+			background-color: #ddd;
+		}
+
+		/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+		.show {
+			display: block;
+		}
+		/* iPhone frame styles */
+		.phone-frame {
+			position: relative;
+			width: 360px;
+			height: 700px;
+			margin: 0 auto;
+			padding: 20px 0;
+			background-color: #333;
+			border-radius: 30px;
+			overflow: hidden;
+		}
+
+		.phone-screen {
+			position: relative;
+			width: 320px;
+			height: 630px;
+			margin: 0 auto;
+			padding: 30px;
+			background-color: #fff;
+			border-radius: 15px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+			overflow: hidden;
+		}
+		
+		.app-logo {
+      position: absolute;
+      top: 4px;
+      left: 7px;
+      width: 354px;
+      height: 16px;
+    }
+
+  </style>
+</head>
+<body>
+	
+  <div class="phone-frame">
+    <div class="phone-screen">
+	<img src="https://imgur.com/kIMZKc8.png" alt="topbar" class="app-logo">
+    <h2 class="halo-text1">H<span class="plus-sign"><span class="plus">+</span></span>~LOCATOR</h2>
+    <h3 class="halo-text">For Spatial Location of All Health Centers (Major Hospitals) Within Nigerian States</h3>
+	<style>
+		.halo-text1 .plus-sign {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      width: 30px; /* Adjust the size of the circle */
+      height: 30px; /* Adjust the size of the circle */
+      border-radius: 50%;
+    }
+		.halo-text1 .plus-sign .plus {
+      color: red; /* Change this to your desired color */
+      font-size: 35px;
+      weight: bold;
+      width: 22px;
+      height: 40px;
+    }
+		.app-logo{
+			width: 30;
+			height: 15px;
+			border-radius: 10px;
+			border-radius: 10px;
+			}
+		.drop {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			background-color: #409bc9;
+			
+		}
+		.halo-text {
+			font-family: Blackadder ITC;
+			font-size: 20px;
+			text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #c3ceff, 0 0 100px #c3ceff, 0 0 150px #c3ceff;
+			width: 50;
+			height: 60px;
+			align-items: center;
+			margin-top: 0;
+			}
+			.halo-text1 {
+			font-family: Bodoni MT Black;
+			font-size: 30px;
+			text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #c3ceff, 0 0 100px #c3ceff, 0 0 150px #c3ceff;
+			width: 50;
+			height: 60px;
+			margin-top: 0;
+			margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+			}
+	</style>
+	
+	        
+			
+			<label>
+		<input type="radio" name="state" value="state">
+		State
+		<div class="drop">
+			<select>
+				<option value="">Select State</option>
+				<option value="Abia">Abia</option>
+                <option value="Adamawa">Adamawa</option>
+                <option value="Akwa Ibom">Akwa Ibom</option>
+                <option value="Anambra">Anambra</option>
+                <option value="Bauchi">Bauchi</option>
+                <option value="Bayelsa">Bayelsa</option>
+                <option value="Benue">Benue</option>
+                <option value="Borno">Borno</option>
+                <option value="Cross River">Cross River</option>
+                <option value="Delta">Delta</option>
+                <option value="Ebonyi">Ebonyi</option>
+                <option value="Edo">Edo</option>
+                <option value="Ekiti">Ekiti</option>
+                <option value="Enugu">Enugu</option>
+                <option value="Gombe">Gombe</option>
+                <option value="Imo">Imo</option>
+                <option value="Jigawa">Jigawa</option>
+                <option value="Kaduna">Kaduna</option>
+                <option value="Kano">Kano</option>
+                <option value="Katsina">Katsina</option>
+                <option value="Kebbi">Kebbi</option>
+                <option value="Kogi">Kogi</option>
+                <option value="Kwara">Kwara</option>
+                <option value="Lagos">Lagos</option>
+                <option value="Nasarawa">Nasarawa</option>
+                <option value="Niger">Niger</option>
+                <option value="Ogun">Ogun</option>
+                <option value="Ondo">Ondo</option>
+                <option value="Osun">Osun</option>
+                <option value="Oyo">Oyo</option>
+                <option value="Plateau">Plateau</option>
+                <option value="Rivers">Rivers</option>
+                <option value="Sokoto">Sokoto</option>
+                <option value="Taraba">Taraba</option>
+                <option value="Yobe">Yobe</option>
+                <option value="Zamfara">Zamfara</option>
+                <option value="FCT">Abuja</option>
+			</select>
+		</div>
+	</label>
+	
+<label>
+        <input type="radio" name="state" value="category" onclick="updateHospitalTypes()">
+        Category
+        <div class="drop">
+            <select id="categorySelect" onchange="updateHospitalTypes()">
+                <option value="">Select Category</option>
+                <option value="CH">Children Hospital</option>
+                <option value="GH">General Hospital</option>
+                <option value="SH">Specialist Hospital</option>
+                <option value="TH">Teaching Hospital</option>
+            </select>
+        </div>
+    </label>
+
+    <label>
+        <input type="radio" name="state" value="hospitalType" onclick="updateHospitals()">
+        Hospital Type
+        <div class="drop">
+            <select id="hospitalTypeSelect" onchange="updateHospitals()">
+                <option value="">Select Hospital Type</option>
+            </select>
+        </div>
+    </label>
+
+    <label>
+        <input type="radio" name="state" value="hospital">
+        List of Hospitals
+        <div class="drop">
+            <select id="hospitalSelect" onchange="updateHospitalCareContact()">
+                <option value="">Select Hospital</option>
+            </select>
+        </div>
+    </label>
+
+    <label>
+        <input type="radio" name="state" value="imo">
+        Hospital Care Contact
+        <div class="drop">
+            <select id="contactSelect">
+                <option value="">See Contact Details</option>
+            </select>
+        </div>
+    </label>
+
+    <script>
+        function updateHospitalTypes() {
+            var categorySelect = document.getElementById('categorySelect');
+            var hospitalTypeSelect = document.getElementById('hospitalTypeSelect');
+            var hospitalSelect = document.getElementById('hospitalSelect');
+
+            // Define options for each category
+            var options = {
+                'CH': ['Children Health Centers'],
+                'GH': ['Federal General Hospital', 'State General Hospital'],
+                'SH': ['Government Specialist Hospital', 'Private Specialist Hospital'],
+                'TH': ['Government Teaching Hospital', 'Private Teaching Hospital']
+            };
+
+            // Get the selected category
+            var selectedCategory = categorySelect.value;
+
+            // Update hospital types based on the selected category
+            hospitalTypeSelect.innerHTML = '<option value="">Select Hospital Type</option>';
+            hospitalSelect.innerHTML = '<option value="">Select Hospital</option>';
+
+            if (selectedCategory && options[selectedCategory]) {
+                options[selectedCategory].forEach(function (option) {
+                    var optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    hospitalTypeSelect.appendChild(optionElement);
+                });
+            }
+        }
+
+        function updateHospitals() {
+            var hospitalTypeSelect = document.getElementById('hospitalTypeSelect');
+            var hospitalSelect = document.getElementById('hospitalSelect');
+
+            // Define options for each hospital type
+            var options = {
+                'Children Health Centers': ['Lifeline Children Hospital - Lagos', 'Blue Salvia Children Hospital - Enugu', 'Tehilah Children Hospital - PH'],
+                'Federal General Hospital': ['National Hospital - Abuja', 'Federal Medical Center - Ondo', 'FCT District Hospital - Abuja'],
+                'State General Hospital': ['Parklane Hospital - Enugu', 'Baptist Medical Center - Oyo', 'General Hospital - Niger'],
+                'Government Specialist Hospital': ['National Orthopaedic - Enugu', 'National Ear Care Center - Kaduna', 'Neuro Psychiatric Hospital - Borno'],
+                'Private Specialist Hospital': ['Neuro Psychiatric - Ogun', 'Ring Road Hospital - Oyo', 'Motayo Hospital - Lagos'],
+                'Government Teaching Hospital': ['University College Hospital - Ibadan', 'Jos University Teaching Hospital', 'Federal Teaching Hospital - Ebonyi'],
+                'Private Teaching Hospital': ['Luke Hospital - Anua', 'Nicholas Hospital - Lagos', 'Holy Rosary Hospital - Imo']
+            };
+
+            // Get the selected hospital type
+            var selectedHospitalType = hospitalTypeSelect.value;
+
+            // Update hospital list based on the selected hospital type
+            hospitalSelect.innerHTML = '<option value="">Select Hospital</option>';
+
+            if (selectedHospitalType && options[selectedHospitalType]) {
+                options[selectedHospitalType].forEach(function (option) {
+                    var optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    hospitalSelect.appendChild(optionElement);
+                });
+            }
+        }
+
+        function updateHospitalCareContact() {
+            var contactSelect = document.getElementById('contactSelect');
+            var hospitalSelect = document.getElementById('hospitalSelect');
+
+            // Define contact information for each hospital
+            var contactInfo = {
+                'Lifeline Children Hospital - Lagos': '(+2347012345678)',
+                'Blue Salvia Children Hospital - Enugu': '(+2348023456789)',
+                'Tehilah Children Hospital - PH': '(+2347034567890)',
+                'Baptist Medical Center - Oyo': '(+2347089012345)',
+                'Federal Medical Center - Ondo': '(+2348056789012)',
+                'Federal Teaching Hospital - Ebonyi': '(+2348178901234)',
+                'FCT District Hospital - Abuja': '(+2347067890123)',
+                'General Hospital - Niger': '(+2347090123456)',
+                'Holy Rosary Hospital - Imo': '(+2348201234567)',
+                'Jos University Teaching Hospital': '(+2348167890123)',
+                'Lifeline C-Hospital – Lagos': '(+2347012345678)',
+                'Luke Hospital - Anua': '(+2348189012345)',
+                'Motayo Hospital - Lagos': '(+2348156789012)',
+                'National Ear Care Center - Kaduna': '(+2348112345678',
+                'National Hospital - Abuja': '(+2347045678901)',
+                'National Orthopaedic - Enugu': '(+2348134567890)',
+                'Neuro Psychiatric Hospital - Borno': '(+2348123456789)',
+                'Neuro Psychiatric - Ogun': '(+2348101234567)',
+                'Nicholas Hospital - Lagos': '(+2348190123456)',
+                'Parklane Hospital - Enugu': '(+2348078901234)',
+                'Ring Road Hospital - Oyo': '(+2348145678901)',
+                'University College Hospital - Ibadan': '(+2348167890123)',
+                
+                // Add contact information for other hospitals
+            };
+
+            // Get the selected hospital
+            var selectedHospital = hospitalSelect.value;
+
+            // Update contact information based on the selected hospital
+            contactSelect.innerHTML = '<option value="">See Contact Details</option>';
+
+            if (selectedHospital && contactInfo[selectedHospital]) {
+                var optionElement = document.createElement('option');
+                optionElement.value = contactInfo[selectedHospital];
+                optionElement.textContent = selectedHospital + ': ' + contactInfo[selectedHospital];
+                contactSelect.appendChild(optionElement);
+            }
+        }
+    </script>
+	<title>Real Search Button</title>
+  </head>
+  <h6></h6>
+  <h4>
+  <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #409bc9;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            max-height: 200px; /* Set a maximum height for the dropdown */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #cceeff;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.querySelector(".dropdown");
+        var dropdownContent = document.querySelector(".dropdown-content");
+
+        dropdown.addEventListener("click", function() {
+            dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!dropdown.contains(event.target)) {
+                dropdownContent.style.display = "none";
+            }
+        });
+    });
+</script>
+        <div class="dropdown1">
+    <button onclick="myFunction()" class="dropbtn1">Click to See Picture of Choice Hospital</button>
+    <div id="myDropdown1" class="dropdown-content1">
+        <a <a href="https://drive.google.com/file/d/1mj7LKeuf9XVGN_QgclIGBRJdjIShiHNq/view?usp=drive_link" target="_blank">Baptist Medical Center-Oyo</a>
+        <a <a href="https://drive.google.com/file/d/1jy03xY4x_96XvuAeTAEZ99YwId0zrhWm/view?usp=drive_link" target="_blank">Blue Salvia C-Hospital–Enugu</a>
+		<a <a href="https://drive.google.com/file/d/1mVpRzmzhgACjNrU-RbHHJwMX4VDA6_Yv/view?usp=drive_link" target="_blank">Federal Medical Center–Ondo</a>
+		<a <a href="https://drive.google.com/file/d/1JIgOVmlikbtiM1qFgYpeyYX0TcgEhZF3/view?usp=drive_link" target="_blank">Fed. Teach. Hospital–Ebonyi</a>
+		<a <a href="https://drive.google.com/file/d/1pacH4guZhrZFZ6J411UH6xsLZhob49Sx/view?usp=drive_link" target="_blank">FCT District Hospital–Abuja</a>
+		<a <a href="https://drive.google.com/file/d/1lWqycEKrznO1w_fcBPqq0Z2GBW2rnGFb/view?usp=drive_link" target="_blank">General Hospital–Niger</a>
+		<a <a href="https://drive.google.com/file/d/1rwZt33puwf666Yo56CTl67riit-muG3m/view?usp=drive_link" target="_blank">Holy Rosary Hospital–Imo</a>
+		<a <a href="https://drive.google.com/file/d/1DMMD8O8v-QKkf4h31EvyT7v9AMGrutnr/view?usp=drive_link" target="_blank">Jos University Teach. Hospital</a>
+		<a <a href="https://drive.google.com/file/d/14dG2R-oNqV1jNjcBAYgKQmSrpodRz5G3/view?usp=drive_link" target="_blank">Lifeline C-Hospital–Lagos</a>
+		<a <a href="https://drive.google.com/file/d/1nGVRgA7SA7n3NFr_KOmoyO1kWhAF3VS5/view?usp=drive_link" target="_blank">Luke Hospital–Akwa Ibom</a>
+		<a <a href="https://drive.google.com/file/d/1fmUNwhozQXNFT2cbPAZvYj3Lab8bx76v/view?usp=drive_link" target="_blank">Motayo Hospital –Lagos</a>
+		<a <a href="https://drive.google.com/file/d/1MnxGrxxttNBFzXECsTZTDDUNPJV1PkWk/view?usp=drive_link" target="_blank">Nat. Ear Care Cent.–Kaduna</a>
+		<a <a href="https://drive.google.com/file/d/1QMEv3kboz_8sCbISS8SoA9nwgOX_rCd_/view?usp=drive_link" target="_blank">National Hospital–Abuja</a>
+		<a <a href="https://drive.google.com/file/d/1UmyAdkv6-25OJSIss8jSv0rwjpUbsLnZ/view?usp=drive_link" target="_blank">National Orthopedic–Enugu</a>
+		<a <a href="https://drive.google.com/file/d/1aKU2SgJuVd5WibGOJDEayTGXQ_C7P7FS/view?usp=drive_link" target="_blank">Neuro Psych. Hospital–Borno</a>
+		<a <a href="https://drive.google.com/file/d/1dLE0fX0ZHxbk_DnmVgReGD9-5CTKxtWR/view?usp=drive_link" target="_blank">Neuro Psych. Hospital-Ogun</a>
+		<a <a href="https://drive.google.com/file/d/1_zjVDWVjMofx6tzHccUhXfKiXJSuOmOY/view?usp=drive_link" target="_blank">Nicholas Hospital–Lagos</a>
+		<a <a href="https://drive.google.com/file/d/1X6IKoktKRdKRC2WeuPC-R_2hR3wrCOPh/view?usp=drive_link" target="_blank">Tehilah C-Hospital-PH</a>
+		<a <a href="https://drive.google.com/file/d/1x4NjQRtC6HSkrxLEFvIULXl7rnooQIGB/view?usp=drive_link" target="_blank">Parklane Hospital–Enugu</a>
+		<a <a href="https://drive.google.com/file/d/1WejeSnXOLPKke7b6GvHpZ1-C2agYv31A/view?usp=drive_link" target="_blank">Ring Road Hospital–Oyo</a>
+		<a <a href="https://drive.google.com/file/d/1nQC77uvnaZDb-HLp27y-rMwyoKW4Z9F1/view?usp=drive_link" target="_blank">University College Hospital–Oyo</a>
+    </div>
+</div>
+
+<style>
+    .dropdown1 {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropbtn1 {
+        background-color: #409bc9;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        border: 1px solid #ff0000;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .dropdown-content1 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        max-height: 200px; /* Set a maximum height for the dropdown */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .dropdown-content1 a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content1 a:hover {
+        background-color: #cceeff;
+    }
+</style>
+
+<h6></h6>
+</head>
+<body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown1 = document.querySelector(".dropdown1");
+        var dropdownContent1 = document.querySelector(".dropdown-content1");
+
+        dropdown1.addEventListener("click", function() {
+            dropdownContent1.style.display = (dropdownContent1.style.display === "block") ? "none" : "block";
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!dropdown1.contains(event.target)) {
+                dropdownContent1.style.display = "none";
+            }
+        });
+    });
+</script>
+        <div class="dropdown">
+		<button onclick="myFunction()" class="dropbtn">Click for Spatial Location of Hospital</button>
+		<div id="myDropdown" class="dropdown-content">
+			<a <a href="https://www.google.com/maps/place/7.819188737513641, 3.920945968259224" target="_blank">Baptist Medical Center-Oyo</a>
+			<a <a href="https://www.google.com/maps/place/6.476514571417028, 7.479863925857677" target="_blank">Blue Salvia Children Hospital–Enugu</a>
+			<a <a href="https://www.google.com/maps/place/7.21381810278515, 5.599651324088989" target="_blank">Federal Medical Center–Ondo</a>
+			<a <a href="https://www.google.com/maps/place/6.3418592704517724, 8.10689360013744" target="_blank">Federal Teaching Hospital–Ebonyi</a>
+			<a <a href="https://www.google.com/maps/place/9.09228060884295, 7.480831998716746" target="_blank">FCT District Hospital–Abuja</a>
+			<a <a href="https://www.google.com/maps/place/9.191140380592456, 7.177443806155884" target="_blank">General Hospital–Niger</a>
+			<a <a href="https://www.google.com/maps/place/5.472322376531644, 7.1102191472083325" target="_blank">Holy Rosary Hospital–Imo</a>
+			<a <a href="https://www.google.com/maps/place/9.932995, 8.910900" target="_blank">Jos University Teaching Hospital</a>
+			<a <a href="https://www.google.com/maps/place/6.536020645696327, 3.3446828122555066" target="_blank">Lifeline Children Hospital–Lagos</a>
+			<a <a href="https://www.google.com/maps/place/5.043024062421988, 7.921694431014085" target="_blank">Luke Hospital–Akwa Ibom</a>
+			<a <a href="https://www.google.com/maps/place/6.6000545057925875, 3.3502231529188773" target="_blank">Motayo Hospital –Lagos</a>
+			<a <a href="https://www.google.com/maps/place/10.519918122196135, 7.44089815446933" target="_blank">National Ear Care Center–Kaduna</a>
+			<a <a href="https://www.google.com/maps/place/9.042071264779478, 7.461749140966068" target="_blank">National Hospital–Abuja</a>
+			<a <a href="https://www.google.com/maps/place/6.465073748149869, 7.525135537573461" target="_blank">National Orthopedic–Enugu</a>
+			<a <a href="https://www.google.com/maps/place/11.865243150949272, 13.118622839809913" target="_blank">Neuro Psychiatric Hospital–Borno</a>
+			<a <a href="https://www.google.com/maps/place/7.15615117096154, 3.299598312869208" target="_blank">Neuro Psychiatric Hospital-Ogun</a>
+			<a <a href="https://www.google.com/maps/place/6.468187333253187, 3.394306186364523" target="_blank">Nicholas Hospital–Lagos</a>
+			<a <a href="https://www.google.com/maps/place/4.809705, 7.046361" target="_blank">Tehilah Children Hospital-PH</a>
+			<a <a href="https://www.google.com/maps/place/6.461614869186195, 7.493562479745547" target="_blank">Parklane Hospital–Enugu</a>
+			<a <a href="https://www.google.com/maps/place/7.35117024307432, 3.862399995254391" target="_blank">Ring Road Hospital–Oyo</a>
+			<a <a href="https://www.google.com/maps/place/7.402083520598079, 3.902048966418958" target="_blank">University College Hospital–Ibadan</a>
+		</div>	
+	<p></p>
+	<h6></h6>
+	<!-- Replace 'YOUR_GOOGLE_FORM_URL' with the actual URL of your Google Form -->
+<style>
+    .responsive-iframe {
+        position: relative;
+        overflow: hidden;
+        padding-top: 56.25%; /* 16:9 aspect ratio (change this value based on your form's aspect ratio) */
+    }
+
+    .responsive-iframe iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<div class="responsive-iframe">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdexdVoV9of5txDZN726fSIJ2in0cUVpOJBK4z3PDY8xhvSJg/viewform?embedded=true" width="640" height="1342" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</html>
